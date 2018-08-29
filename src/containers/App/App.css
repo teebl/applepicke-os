@@ -1,0 +1,10 @@
+html, body, #root, .app {
+  height: calc(100%);
+  width: 100%;
+}
+
+.app {
+  background: var(--colour-white);
+  color: var(--colour-dark)
+}
+

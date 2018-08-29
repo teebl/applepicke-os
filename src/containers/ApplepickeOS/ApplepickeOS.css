@@ -1,0 +1,15 @@
+
+.applepicke-os {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.menu {
+  font-size: 13px;
+  color: var(--colour-light);
+  background: var(--colour-dark);
+  box-shadow: 0 0px var(--space-1) 0 var(--colour-dark);
+}

@@ -1,0 +1,17 @@
+
+.bottombar {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+
+  width: 100%;
+  height: 30px;
+  background: var(--colour-dark);
+  box-shadow: 0 0 var(--space-1) 0 var(--colour-dark);
+}
+
+.bottombar-inner {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+}

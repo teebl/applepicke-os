@@ -1,0 +1,26 @@
+:root {
+  /* Colours */
+  --colour-light: #a5a5a5;
+  --colour-dark: #292b2e;
+
+  --colour-orange: #dc752f;
+  --colour-purple: #5d4d7a;
+  --colour-pink: #D81E5B;
+
+  --colour-white: #FFFFFF;
+  --colour-black: #000000;
+
+  /* Font definitions */
+  --font-serif: serif;
+  --font-sans-serif: sans-serif;
+  --font-monospace: monospace;
+  --font-cursive: cursive;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+}
