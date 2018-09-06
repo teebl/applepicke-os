@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const MenuContext = React.createContext({
+export const Menu = React.createContext({
   topbar: {
     widgets: [
       'date',

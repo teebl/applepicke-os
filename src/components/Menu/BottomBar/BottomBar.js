@@ -1,12 +1,12 @@
 import './BottomBar.css'
 import React from 'react'
 import { WidgetGroup } from '../Widgets/WidgetGroup'
-import { MenuContext } from '../../../contexts/MenuContext'
+import { Menu } from '../../../contexts/Menu'
 
 class BottomBar extends React.Component {
   render() {
     return (
-      <MenuContext.Consumer>
+      <Menu.Consumer>
         {({ bottombar }) => (
           <footer className='bottombar menu'>
             <div className='bottombar-inner'>
@@ -14,7 +14,7 @@ class BottomBar extends React.Component {
             </div>
           </footer>
         )}
-      </MenuContext.Consumer>
+      </Menu.Consumer>
     )
   }
 }

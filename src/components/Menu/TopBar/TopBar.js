@@ -3,12 +3,12 @@ import React from 'react'
 
 import { WidgetGroup } from '../Widgets/WidgetGroup'
 
-import { MenuContext } from '../../../contexts/MenuContext'
+import { Menu } from '../../../contexts/Menu'
 
 class TopBar extends React.Component {
   render() {
     return (
-      <MenuContext.Consumer>
+      <Menu.Consumer>
         {({ topbar }) => (
           <header className='topbar menu'>
             <div className='topbar-inner'>
@@ -23,7 +23,7 @@ class TopBar extends React.Component {
           </header>
         )}
 
-      </MenuContext.Consumer>
+      </Menu.Consumer>
     )
   }
 }
