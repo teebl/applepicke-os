@@ -1,14 +1,14 @@
 import './TopBar.css'
 import React from 'react'
-
+import { Subscribe } from 'react-contextual'
 import { WidgetGroup } from '../Widgets/WidgetGroup'
-
-import { Menu } from '../../../contexts/Menu'
+import { menuStore } from '../../../contexts/Menu'
+import { windowStore } from '../../../contexts/Window'
 
 class TopBar extends React.Component {
   render() {
     return (
-      <Menu.Consumer>
+      <Subscribe to={menuStore}>
         {({ topbar }) => (
           <header className='topbar menu'>
             <div className='topbar-inner'>
@@ -16,14 +16,18 @@ class TopBar extends React.Component {
                 <span>
                   Applepicke OS
                 </span>
+                <Subscribe to={windowStore}>
+                  {({ addWindow }) => (
+                    <button onClick={() => addWindow('hello')}>Add Window</button>
+                  )}
+                </Subscribe>
               </div>
 
               <WidgetGroup widgets={topbar.widgets} />
             </div>
           </header>
         )}
-
-      </Menu.Consumer>
+      </Subscribe>
     )
   }
 }

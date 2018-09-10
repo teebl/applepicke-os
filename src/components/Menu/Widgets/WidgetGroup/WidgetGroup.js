@@ -18,7 +18,7 @@ class WidgetGroup extends React.Component {
           const Widget = WIDGETS[widget]
 
           return (
-            <Widget />
+            <Widget key={widget} />
           )
         })}
       </div>

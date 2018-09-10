@@ -1,0 +1,9 @@
+
+.window {
+  display: block;
+  position: absolute;
+  color: var(--colour-white);
+  background-color: var(--colour-white);
+  border: 2px solid var(--colour-dark);
+  border-radius: 3px;
+}

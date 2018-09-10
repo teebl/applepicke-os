@@ -1,6 +1,6 @@
-import React from 'react'
+import { createStore } from 'react-contextual'
 
-export const Menu = React.createContext({
+export const menuStore = createStore({
   topbar: {
     widgets: [
       'date',
