@@ -12,6 +12,7 @@ export const windowStore = createStore({
 
     return {
       lastId: newId,
+      focusedWindowId: newId,
       windows
     }
   },
