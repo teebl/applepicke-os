@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://os.applepicke.com",
   "dependencies": {
+    "classnames": "^2.2.6",
     "moment": "^2.22.2",
     "react": "^16.4.2",
     "react-contextual": "^5.0.2",

@@ -7,3 +7,7 @@
   border: 2px solid var(--colour-dark);
   border-radius: 3px;
 }
+
+.window.window-dragging {
+  opacity: 0.8;
+}

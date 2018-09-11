@@ -1,0 +1,47 @@
+
+.grab-container {
+  position: relative;
+}
+
+.grab-top, .grab-right, .grab-bottom, .grab-left {
+  position: absolute;
+  padding: 2px;
+  background: rgba(0, 0, 0, 0);
+}
+
+.grab-top:hover, .grab-bottom:hover {
+  cursor: row-resize;
+}
+
+.grab-right:hover, .grab-left:hover {
+  cursor: col-resize;
+}
+
+.grab-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: inherit;
+  height: 1px;
+}
+
+.grab-right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+}
+
+.grab-bottom {
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+}
+
+.grab-left {
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 1px;
+}

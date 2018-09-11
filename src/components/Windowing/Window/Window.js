@@ -1,5 +1,6 @@
 import './Window.css'
 import React from 'react'
+import classnames from 'classnames'
 import { WindowMenuBar } from '../WindowMenuBar'
 
 const WINDOW_OFFSET_TOP = 40
@@ -11,28 +12,58 @@ export class Window extends React.Component {
       this.mouseDown = true
       this.currentX = e.clientX
       this.currentY = e.clientY
+    } else if (e.target === this.grabTop) {
+      this.grabbing = 'top'
+    } else if (e.target === this.grabRight) {
+      this.grabbing = 'right'
+    } else if (e.target === this.grabBottom) {
+      this.grabbing = 'bottom'
+    } else if (e.target === this.grabLeft) {
+      this.grabbing = 'left'
     }
   }
 
   handleClickEnd = e => {
     this.mouseDown = false
+    this.grabbing = null
+    this.setState({  })
   }
 
   handleWindowMove = e => {
-    const { top, left } = this.state
+    const { top, left, width, height } = this.state
+
+    const newPosition = { left, top, width, height }
+    const deltaX = e.clientX - this.currentX
+    const deltaY = e.clientY - this.currentY
+    const newX = left + deltaX
+    const newY = top + deltaY
+
+    this.currentX = e.clientX
+    this.currentY = e.clientY
 
     if (this.mouseDown) {
-      const newX = left + e.clientX - this.currentX
-      const newY = top + e.clientY - this.currentY
-
-      this.currentX = e.clientX
-      this.currentY = e.clientY
-
-      this.setState({
-        left: newX,
-        top: newY < WINDOW_OFFSET_TOP ? WINDOW_OFFSET_TOP : newY
-      })
+      newPosition.left = newX
+      newPosition.top = newY < WINDOW_OFFSET_TOP ? WINDOW_OFFSET_TOP : newY
     }
+    else if (this.grabbing) {
+      if (this.grabbing === 'right')
+        newPosition.width += deltaX
+      else if (this.grabbing === 'left') {
+        newPosition.left += deltaX
+        newPosition.width -= deltaX
+      }
+      else if (this.grabbing === 'top') {
+        newPosition.top += deltaY
+        newPosition.height -= deltaY
+      }
+      else if (this.grabbing === 'bottom')
+        newPosition.height += deltaY
+    }
+    else {
+      return
+    }
+
+    this.setState(newPosition)
   }
 
   constructor(props) {
@@ -63,9 +94,15 @@ export class Window extends React.Component {
       left,
     } = this.state
 
+    const className = classnames(
+      'window',
+      'grab-container',
+      { 'window-dragging': this.mouseDown }
+    )
+
     return (
       <div
-        className='window'
+        className={className}
         style={{
           width,
           height,
@@ -76,6 +113,11 @@ export class Window extends React.Component {
         onMouseDown={focusWindow}
         ref={w => this.window = w}
       >
+        <div ref={grabTop => this.grabTop = grabTop} className='grab-top' />
+        <div ref={grabRight => this.grabRight = grabRight} className='grab-right' />
+        <div ref={grabBottom => this.grabBottom = grabBottom} className='grab-bottom' />
+        <div ref={grabLeft => this.grabLeft = grabLeft} className='grab-left' />
+
         <WindowMenuBar
           innerRef={menuBar => this.menuBar = menuBar}
           handleWindowMove={this.handleWindowMove}
