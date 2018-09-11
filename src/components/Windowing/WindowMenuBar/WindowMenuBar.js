@@ -24,7 +24,12 @@ export class WindowMenuBar extends React.Component {
   }
 
   render() {
-    const { innerRef, removeWindow, windowId } = this.props
+    const {
+      innerRef,
+      maximizeWindow,
+      removeWindow,
+      windowId
+    } = this.props
 
     return (
       <div
@@ -34,11 +39,20 @@ export class WindowMenuBar extends React.Component {
         <div className='menu-items'>
         </div>
 
-        <div
-          className='menu-close'
-          onClick={() => { removeWindow(windowId) }}
-        >
-          <i className='icon-cross' />
+        <div className='window-actions'>
+          <div
+            className='menu-close'
+            onClick={() => { maximizeWindow() }}
+          >
+            <i className='icon-window2' />
+          </div>
+
+          <div
+            className='menu-close'
+            onClick={() => { removeWindow(windowId) }}
+          >
+            <i className='icon-cross' />
+          </div>
         </div>
       </div>
     )

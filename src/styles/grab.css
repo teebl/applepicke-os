@@ -3,45 +3,82 @@
   position: relative;
 }
 
-.grab-top, .grab-right, .grab-bottom, .grab-left {
+.grab-top,
+.grab-top-right,
+.grab-right,
+.grab-bottom-right,
+.grab-bottom,
+.grab-bottom-left,
+.grab-left,
+.grab-top-left {
   position: absolute;
   padding: 2px;
   background: rgba(0, 0, 0, 0);
 }
 
 .grab-top:hover, .grab-bottom:hover {
-  cursor: row-resize;
+  cursor: ns-resize;
 }
 
 .grab-right:hover, .grab-left:hover {
-  cursor: col-resize;
+  cursor: ew-resize;
+}
+
+.grab-top-right, .grab-bottom-left {
+  padding: 7px;
+  cursor: nesw-resize;
+}
+
+.grab-bottom-right, .grab-top-left {
+  padding: 7px;
+  cursor: nwse-resize;
 }
 
 .grab-top {
-  top: 0;
+  top: -3px;
   left: 0;
   right: 0;
   bottom: inherit;
   height: 1px;
 }
 
+.grab-top-right {
+  top: -3px;
+  right: -3px;
+}
+
 .grab-right {
   top: 0;
   bottom: 0;
-  right: 0;
+  right: -3px;
   width: 1px;
+}
+
+.grab-bottom-right {
+  bottom: -3px;
+  right: -3px;
 }
 
 .grab-bottom {
   left: 0;
-  bottom: 0;
+  bottom: -3px;
   right: 0;
   height: 1px;
 }
 
+.grab-bottom-left {
+  bottom: -3px;
+  left: -3px;
+}
+
 .grab-left {
-  left: 0;
+  left: -3px;
   bottom: 0;
   top: 0;
   width: 1px;
+}
+
+.grab-top-left {
+  top: -3px;
+  left: -3px;
 }
