@@ -1,11 +1,12 @@
 
 .topbar {
+  position: absolute;
   display: flex;
   align-items: center;
 
   width: 100%;
   height: 40px;
-
+  z-index: 3000;
 }
 
 .topbar-inner {

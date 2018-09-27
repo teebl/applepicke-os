@@ -1,12 +1,13 @@
 import './BottomBar.css'
 import React from 'react'
+import { Subscribe } from 'react-contextual'
 import { WidgetGroup } from '../Widgets/WidgetGroup'
-import { Menu } from '../../../contexts/Menu'
+import { menuStore } from '../../../contexts/Menu'
 
 class BottomBar extends React.Component {
   render() {
     return (
-      <Menu.Consumer>
+      <Subscribe to={menuStore}>
         {({ bottombar }) => (
           <footer className='bottombar menu'>
             <div className='bottombar-inner'>
@@ -14,7 +15,7 @@ class BottomBar extends React.Component {
             </div>
           </footer>
         )}
-      </Menu.Consumer>
+      </Subscribe>
     )
   }
 }
