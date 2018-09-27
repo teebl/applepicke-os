@@ -1,33 +1,37 @@
-import { createStore } from 'react-contextual'
+import { createStore } from "react-contextual";
 
 export const windowStore = createStore({
   lastId: 0,
   windows: [],
 
   addWindow: windowType => state => {
-    const newId = state.lastId + 1
-    const windows = [...state.windows, {
-      id: newId
-    }]
+    const newId = state.lastId + 1;
+    const windows = [
+      ...state.windows,
+      {
+        id: newId,
+        //TODO: App selection within the Add Window Button
+        application: "calculator"
+      }
+    ];
 
     return {
       lastId: newId,
       focusedWindowId: newId,
       windows
-    }
+    };
   },
 
   removeWindow: windowId => state => {
-    const windows = state.windows.filter(w => w.id !== windowId)
-    return { windows }
+    const windows = state.windows.filter(w => w.id !== windowId);
+    return { windows };
   },
 
   focusWindow: windowId => state => {
     return {
       focusedWindowId: windowId
-    }
+    };
   },
 
   minimizeWindow: windowId => {}
-})
-
+});
