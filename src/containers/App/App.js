@@ -37,7 +37,6 @@ class App extends React.Component {
 				/>
 				<p>input: {this.state.input}</p>
 				<p>tokened input: {stringTokens}</p>
-				<p>parsed Input: {parsedInput.map(token => token.value).join(" ")}</p>
 				<ApplepickeOS />
 			</div>
 		);

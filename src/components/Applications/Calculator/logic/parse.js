@@ -1,18 +1,31 @@
+//Parse converts the tokens from infix notation to an Abstract Syntax Tree
 import tokenizer from "./tokenizer.js";
 import * as CONST from "./constants.js";
 import "./helpers.js";
+
+function ASTNode(token, leftChildNode, rightChildNode) {
+	this.token = token.value;
+	this.leftChildNode = leftChildNode;
+	this.rightChildNode = rightChildNode;
+}
+
+Array.prototype.addNode = function(operatorToken) {
+	var rightChildNode = this.pop();
+	var leftChildNode = this.pop();
+	this.push(new ASTNode(operatorToken, leftChildNode, rightChildNode));
+};
 
 function parse(tkArray) {
 	var output = [];
 	var opStack = [];
 	for (let t of tkArray) {
 		switch (t.type) {
-			case "Literal":
-				output.push(t);
+			case "Literal" || "Letter":
+				output.push(new ASTNode(t, null, null));
 				break;
-			case "Letter":
-				output.push(t);
-				break;
+			// case "Letter":
+			// 	output.push(t);
+			// 	break;
 			case "Operator":
 				while (
 					opStack.peek() &&
@@ -24,7 +37,7 @@ function parse(tkArray) {
 						(t.associativity() === "right" &&
 							t.precedence() < opStack.peek().precedence()))
 				) {
-					output.push(opStack.pop());
+					output.addNode(opStack.pop());
 				}
 				opStack.push(t);
 				break;
@@ -33,7 +46,7 @@ function parse(tkArray) {
 				break;
 			case "RightParenthesis":
 				while (opStack.peek() && opStack.peek().type !== "LeftParenthesis") {
-					output.push(opStack.pop());
+					output.addNode(opStack.pop());
 				}
 				opStack.pop();
 				break;
@@ -42,7 +55,12 @@ function parse(tkArray) {
 				break;
 		}
 	}
-	return output.concat(opStack.reverse());
+
+	while (opStack.peek()) {
+		output.addNode(opStack.pop());
+	}
+	console.dir(output.peek());
+	return output.pop;
 }
 
 export default parse;
