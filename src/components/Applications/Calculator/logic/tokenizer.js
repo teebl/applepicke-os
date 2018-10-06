@@ -1,12 +1,21 @@
 //Tokenizer parses the mathematical string from the calculator and returns an array of tokens
 //Tokens will have a type and value
+import * as CONST from "./constants.js";
 
 function Token(type, value) {
 	this.type = type;
 	this.value = value;
 }
 
-function Tokenizer(string) {
+Token.prototype.precedence = function() {
+	return CONST.PREC[this.value];
+};
+
+Token.prototype.associativity = function() {
+	return CONST.ASSOC[this.value];
+};
+
+function tokenizer(string) {
 	var result = [];
 	var numeralBuffer = "";
 
@@ -66,4 +75,4 @@ function Tokenizer(string) {
 	}
 }
 
-export default Tokenizer;
+export default tokenizer;
