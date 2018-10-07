@@ -19,9 +19,9 @@ function tokenizer(string) {
 	var result = [];
 	var numeralBuffer = "";
 
-	string = string.replace(/\s+/g, "").split("");
+	const newString = string.replace(/\s+/g, "").split("");
 
-	string.forEach((char, idx) => {
+	newString.forEach((char, idx) => {
 		switch (charType(char)) {
 			case "Literal":
 				numeralBuffer += char;

@@ -4,11 +4,12 @@ import React from "react";
 import { ApplepickeOS } from "../ApplepickeOS";
 import parse from "../../components/Applications/Calculator/logic/parse.js";
 import tokenizer from "../../components/Applications/Calculator/logic/tokenizer.js";
+import evaluate from "../../components/Applications/Calculator/logic/evaluate.js";
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			input: ""
+			input: "2+2"
 		};
 		//TODO: remove after calculator implemented
 		this.keyPressHandler = this.keyPressHandler.bind(this);
@@ -26,7 +27,8 @@ class App extends React.Component {
 		);
 
 		//TODO remove after calculator implemented
-		const parsedInput = parse(tokenizer(this.state.input));
+		const parsedInput = parse(this.state.input);
+		const evaluatedString = evaluate(this.state.input);
 		return (
 			<div className="app">
 				{/* TODO: remove after calculator implemented*/}
@@ -37,6 +39,7 @@ class App extends React.Component {
 				/>
 				<p>input: {this.state.input}</p>
 				<p>tokened input: {stringTokens}</p>
+				<p>evaluated: {evaluatedString}</p>
 				<ApplepickeOS />
 			</div>
 		);

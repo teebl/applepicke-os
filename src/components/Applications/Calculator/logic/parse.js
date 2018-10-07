@@ -3,19 +3,8 @@ import tokenizer from "./tokenizer.js";
 import * as CONST from "./constants.js";
 import "./helpers.js";
 
-function ASTNode(token, leftChildNode, rightChildNode) {
-	this.token = token.value;
-	this.leftChildNode = leftChildNode;
-	this.rightChildNode = rightChildNode;
-}
-
-Array.prototype.addNode = function(operatorToken) {
-	var rightChildNode = this.pop();
-	var leftChildNode = this.pop();
-	this.push(new ASTNode(operatorToken, leftChildNode, rightChildNode));
-};
-
-function parse(tkArray) {
+function parse(string) {
+	var tkArray = tokenizer(string);
 	var output = [];
 	var opStack = [];
 	for (let t of tkArray) {
@@ -60,7 +49,20 @@ function parse(tkArray) {
 		output.addNode(opStack.pop());
 	}
 	console.dir(output.peek());
-	return output.pop;
+	return output.pop();
 }
+
+function ASTNode(token, leftChildNode, rightChildNode) {
+	this.token = token.value;
+	this.type = token.type;
+	this.leftChildNode = leftChildNode;
+	this.rightChildNode = rightChildNode;
+}
+
+Array.prototype.addNode = function(operatorToken) {
+	var rightChildNode = this.pop();
+	var leftChildNode = this.pop();
+	this.push(new ASTNode(operatorToken, leftChildNode, rightChildNode));
+};
 
 export default parse;
