@@ -1,14 +1,16 @@
 import React from "react";
 
 const CalcButton = props => {
+	const componentClasses = "button ".concat(props.customClass);
+
 	return (
 		<button
-			className="button"
+			className={componentClasses}
 			onClick={() => {
-				props.handleClick(props.children);
+				props.handleClick(props.symbol);
 			}}
 		>
-			{props.children}
+			{props.symbol}
 		</button>
 	);
 };

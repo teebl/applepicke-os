@@ -1,16 +1,10 @@
 import parse from "./parse";
 
-export default function evaluate(input) {
-	if (input === "") {
-		return null;
-	}
-	const parentNode = parse(input);
-
+export default function evaluate(parentNode) {
 	return walkTree(parentNode);
 }
 
 function walkTree(node) {
-	console.dir(node);
 	switch (node.type) {
 		case "Operator":
 			if (node.leftChildNode && node.rightChildNode) {

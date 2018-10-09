@@ -1,10 +1,8 @@
 //Parse converts the tokens from infix notation to an Abstract Syntax Tree
 import tokenizer from "./tokenizer.js";
-import * as CONST from "./constants.js";
 import "./helpers.js";
 
-function parse(string) {
-	var tkArray = tokenizer(string);
+function parse(tkArray) {
 	var output = [];
 	var opStack = [];
 	for (let t of tkArray) {
@@ -12,14 +10,11 @@ function parse(string) {
 			case "Literal" || "Letter":
 				output.push(new ASTNode(t, null, null));
 				break;
-			// case "Letter":
-			// 	output.push(t);
-			// 	break;
 			case "Operator":
 				while (
 					opStack.peek() &&
 					opStack.peek().type === "Operator" &&
-					//current token is left-associative and its precedence is less than or equal to that of top of Opstack, or
+					//current token is left-associative and its precedence is less than or equal to that of top of opstack, or
 					((t.associativity() === "left" &&
 						t.precedence() <= opStack.peek().precedence()) ||
 						//current token is right associative, and has precedence less than that of top of opStack,
@@ -48,7 +43,6 @@ function parse(string) {
 	while (opStack.peek()) {
 		output.addNode(opStack.pop());
 	}
-	console.dir(output.peek());
 	return output.pop();
 }
 
